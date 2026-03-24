@@ -80,13 +80,13 @@ const FloatingBackground = () => {
 const translations = {
   en: {
     heroTitle: "Your Social Media, Fully Automated.",
-    heroSubtitle: "Send us your page link. Our AI agent analyzes your full content, automatically creates brand-suitable posts, Reels, and TikToks, and automates the entire upload process.",
+    heroSubtitle: "Send us your page link. Our AI agent analyzes your full content, automatically creates brand-suitable posts, Reels, and TikToks. First 3 videos are free!",
     scanLink: "Page Analysis",
     scanLinkDesc: "Drop your link. We learn your brand voice.",
     aiCreative: "Brand Content",
     aiCreativeDesc: "Auto-generates posts, Reels & TikToks.",
-    autoPost: "Full Automation",
-    autoPostDesc: "Hands-free uploading to all your pages.",
+    autoPost: "Smart Scheduling",
+    autoPostDesc: "Schedules posts for optimal engagement.",
     dailyAnalysis: "Growth Tracking",
     dailyAnalysisDesc: "Monitors engagement and optimizes.",
     techStackTitle: "How It Works",
@@ -94,7 +94,7 @@ const translations = {
     step1: "Analyze Page Content",
     step2: "Generate Brand Content",
     step3: "Schedule & Automate",
-    step4: "Auto-Upload to Pages",
+    step4: "Schedule Posts",
     platformReach: "Platform Reach",
     contactTitle: "Request a Demo",
     contactSubtitle: "See the Living Automation Engine in action.",
@@ -107,16 +107,17 @@ const translations = {
     facebook: "Facebook",
     instagram: "Instagram",
     tiktok: "TikTok",
+    contactTelegram: "Contact us on Telegram",
   },
   ka: {
     heroTitle: "თქვენი სოციალური მედია, სრულად ავტომატიზირებული.",
-    heroSubtitle: "გამოგვიგზავნეთ თქვენი გვერდის ბმული. ჩვენი AI აგენტი აანალიზებს თქვენს კონტენტს, ავტომატურად ქმნის ბრენდზე მორგებულ პოსტებს, Reels-ებს და TikTok-ებს და სრულად ავტომატიზირებს ატვირთვის პროცესს.",
+    heroSubtitle: "გამოგვიგზავნეთ თქვენი გვერდის ბმული. ჩვენი AI აგენტი აანალიზებს თქვენს კონტენტს, ავტომატურად ქმნის ბრენდზე მორგებულ პოსტებს, Reels-ებს და TikTok-ებს. პირველი 3 ვიდეო უფასოა!",
     scanLink: "გვერდის ანალიზი",
     scanLinkDesc: "ჩააგდეთ ბმული. ჩვენ ვსწავლობთ თქვენს სტილს.",
     aiCreative: "ბრენდის კონტენტი",
     aiCreativeDesc: "ქმნის პოსტებს, Reels და TikTok-ებს.",
-    autoPost: "სრული ავტომატიზაცია",
-    autoPostDesc: "ავტომატური ატვირთვა თქვენს გვერდებზე.",
+    autoPost: "ჭკვიანი დაგეგმვა",
+    autoPostDesc: "დაგეგმავს პოსტებს ოპტიმალური ჩართულობისთვის.",
     dailyAnalysis: "ზრდის კონტროლი",
     dailyAnalysisDesc: "აკონტროლებს ჩართულობას და აუმჯობესებს.",
     techStackTitle: "როგორ მუშაობს",
@@ -124,7 +125,7 @@ const translations = {
     step1: "გვერდის კონტენტის ანალიზი",
     step2: "ბრენდის კონტენტის გენერაცია",
     step3: "დაგეგმვა და ავტომატიზაცია",
-    step4: "ავტომატური ატვირთვა გვერდებზე",
+    step4: "პოსტების დაგეგმვა",
     platformReach: "პლატფორმის წვდომა",
     contactTitle: "დემოს მოთხოვნა",
     contactSubtitle: "ნახეთ ცოცხალი ავტომატიზაციის ძრავი მოქმედებაში.",
@@ -137,6 +138,7 @@ const translations = {
     facebook: "Facebook",
     instagram: "Instagram",
     tiktok: "TikTok",
+    contactTelegram: "დაგვიკავშირდით Telegram-ზე",
   }
 };
 
@@ -515,6 +517,24 @@ export default function App() {
         </section>
 
       </main>
+
+      {/* Footer */}
+      <footer className="relative z-10 py-8 px-6 border-t border-white/20 glass-panel">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-slate-600 mb-4">{t.contactTelegram}</p>
+          <a
+            href="https://t.me/GMblx123"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white font-semibold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105"
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            @GMblx123
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
