@@ -307,23 +307,29 @@ app.post("/api/contact", upload.single("image"), async (req, res) => {
       <p>Hi ${escapeHtml(name)} 👋</p>
 
       <p>
-      Thank you for reaching out!<br>
-      We received your message and our team will reply soon 🚀
+        Thank you for reaching out!<br>
+        We received your message and our team will reply soon 🚀
       </p>
 
       <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
 
       <p>
-      გამარჯობა ${escapeHtml(name)},<br><br>
-      გმადლობთ, რომ დაუკავშირდით <b>Tianshani</b>-ს ✨<br>
-      თქვენი შეტყობინება მიღებულია და მალე დაგიკავშირდებით ✅
+        გამარჯობა ${escapeHtml(name)},<br><br>
+        გმადლობთ, რომ დაუკავშირდით <b>Tianshani</b>-ს ✨<br>
+        თქვენი შეტყობინება მიღებულია და მალე დაგიკავშირდებით ✅
       </p>
 
       <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
 
       <p style="color:#666;font-size:14px;">
-      Best regards,<br>
-      <b>Tianshani Team 🏔️</b>
+        Best regards,<br>
+        <b>Tianshani Team 🏔️</b><br><br>
+
+        📩 Contact us on Telegram:<br>
+        <a href="https://t.me/+995574282845" 
+           style="color:#1a73e8;text-decoration:none;">
+           Message us on Telegram
+        </a>
       </p>
 
     </div>
