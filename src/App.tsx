@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Heart, Music, Image as ImageIcon, Video, Share2, CheckCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
+import React from 'react'; // Add this line at the top
 
 const MountainLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -149,34 +150,51 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const t = translations[lang];
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-    try {
-      const data = new FormData();
-      data.append('name', formData.name);
-      data.append('email', formData.email);
-      data.append('message', formData.message);
-      if (formData.website) data.append('website', formData.website);
-      if (imageFile) data.append('image', imageFile);
+// Assuming you are using React, adding the proper HTMLFormElement type helps with autocompletion
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setStatus('sending');
+  
+  try {
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('message', formData.message);
+    if (formData.website) data.append('website', formData.website);
+    if (imageFile) data.append('image', imageFile); // Matches our backend's upload.single('image')
 
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: data,
-      });
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '', website: '' });
-        setImageFile(null);
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      console.error('Contact error:', error);
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      body: data,
+    });
+
+    // Parse the JSON response from our Vercel API
+    const result = await response.json();
+
+    if (response.ok) {
+      setStatus('success');
+      
+      // 1. Clear your React state
+      setFormData({ name: '', email: '', message: '', website: '' });
+      setImageFile(null);
+      
+      // 2. Clear the physical HTML form to remove the selected file name from the UI
+      e.currentTarget.reset(); 
+      
+    } else {
+      // Log the specific error sent by the backend (e.g., "Invalid email format")
+      console.error('Backend rejected the submission:', result.error);
       setStatus('error');
+      
+      // Tip: If you have an error state, you can display this message to the user
+      // setErrorMessage(result.error); 
     }
-  };
-
+  } catch (error) {
+    // This catches network errors (e.g., user lost internet connection)
+    console.error('Network or parsing error:', error);
+    setStatus('error');
+  }
+};
   return (
     <div className="relative min-h-screen font-sans selection:bg-sky-200 selection:text-sky-900">
       <FloatingBackground />
