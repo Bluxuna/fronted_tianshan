@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Heart, Music, Image as ImageIcon, Video, Share2, CheckCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
 import React from 'react'; // Add this line at the top
+import emailjs from '@emailjs/browser';
 
 const MountainLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -150,48 +151,85 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const t = translations[lang];
 
-// Assuming you are using React, adding the proper HTMLFormElement type helps with autocompletion
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
+  const form = e.currentTarget;
   setStatus('sending');
   
   try {
-    const data = new FormData();
-    data.append('name', formData.name);
-    data.append('email', formData.email);
-    data.append('message', formData.message);
-    if (formData.website) data.append('website', formData.website);
-    if (imageFile) data.append('image', imageFile); // Matches our backend's upload.single('image')
+    // EmailJS credentials from .env file (Vite style)
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      body: data,
-    });
+    // If an image is selected, we convert it to base64 with compression
+    const compressImage = async (file: File): Promise<string> => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 800;
+            const MAX_HEIGHT = 800;
+            let width = img.width;
+            let height = img.height;
 
-    // Parse the JSON response from our Vercel API
-    const result = await response.json();
+            if (width > height) {
+              if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+              }
+            } else {
+              if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx?.drawImage(img, 0, 0, width, height);
+            // Compress to 0.7 quality JPEG
+            resolve(canvas.toDataURL('image/jpeg', 0.7));
+          };
+          img.src = e.target?.result as string;
+        };
+        reader.readAsDataURL(file);
+      });
+    };
 
-    if (response.ok) {
+    let base64Image = '';
+    if (imageFile) {
+      base64Image = await compressImage(imageFile);
+    }
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      website_link: formData.website || 'Not provided',
+      message: formData.message,
+      image_attachment: base64Image, // Template must handle this if used
+    };
+
+    const response = await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      templateParams,
+      PUBLIC_KEY
+    );
+
+    if (response.status === 200) {
       setStatus('success');
-      
-      // 1. Clear your React state
       setFormData({ name: '', email: '', message: '', website: '' });
       setImageFile(null);
-      
-      // 2. Clear the physical HTML form to remove the selected file name from the UI
-      e.currentTarget.reset(); 
-      
+      form.reset();
     } else {
-      // Log the specific error sent by the backend (e.g., "Invalid email format")
-      console.error('Backend rejected the submission:', result.error);
+      console.error('EmailJS rejected the submission:', response);
       setStatus('error');
-      
-      // Tip: If you have an error state, you can display this message to the user
-      // setErrorMessage(result.error); 
     }
   } catch (error) {
-    // This catches network errors (e.g., user lost internet connection)
-    console.error('Network or parsing error:', error);
+    console.error('EmailJS error:', error);
     setStatus('error');
   }
 };
