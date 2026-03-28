@@ -1850,7 +1850,7 @@ Attached Image URL: ${imageUrl}
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 flex items-center justify-center drop-shadow-md">
               <MountainLogo className="w-full h-full" />
@@ -1875,7 +1875,7 @@ Attached Image URL: ${imageUrl}
         </div>
       </header>
 
-      <main className="relative z-10 pt-32 pb-24 px-6 max-w-7xl mx-auto space-y-32">
+      <main className="relative z-10 pt-28 md:pt-32 pb-24 px-4 sm:px-6 max-w-7xl mx-auto space-y-32">
         {/* Hero Section */}
         <section className="flex flex-col items-center text-center space-y-8">
           <motion.div
@@ -1884,12 +1884,12 @@ Attached Image URL: ${imageUrl}
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
               <span className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-gradient">
                 {t.heroTitle}
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
               {t.heroSubtitle}
             </p>
           </motion.div>
@@ -1929,7 +1929,7 @@ Attached Image URL: ${imageUrl}
 
             {/* Flying Inputs & Outputs */}
             <motion.div
-              className="absolute left-0 md:left-10 top-1/4 z-10 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2"
+              className="hidden md:flex absolute left-0 md:left-10 top-1/4 z-10 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2"
               animate={{ x: [0, 100, 0], opacity: [0, 1, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeIn" }}
             >
@@ -1938,7 +1938,7 @@ Attached Image URL: ${imageUrl}
             </motion.div>
 
             <motion.div
-              className="absolute left-10 md:left-20 bottom-1/3 z-10 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2"
+              className="hidden md:flex absolute left-10 md:left-20 bottom-1/3 z-10 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2"
               animate={{ x: [0, 100, 0], opacity: [0, 1, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeIn", delay: 1 }}
             >
@@ -1947,7 +1947,7 @@ Attached Image URL: ${imageUrl}
             </motion.div>
 
             <motion.div
-              className="absolute right-0 md:right-10 top-1/3 z-30 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2 border-blue-200"
+              className="hidden md:flex absolute right-0 md:right-10 top-1/3 z-30 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2 border-blue-200"
               animate={{ x: [0, 100, 0], opacity: [0, 1, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
             >
@@ -1956,7 +1956,7 @@ Attached Image URL: ${imageUrl}
             </motion.div>
 
             <motion.div
-              className="absolute right-10 md:right-20 bottom-1/4 z-30 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2 border-indigo-200"
+              className="hidden md:flex absolute right-10 md:right-20 bottom-1/4 z-30 glass-panel p-3 rounded-xl shadow-lg flex items-center gap-2 border-indigo-200"
               animate={{ x: [0, 100, 0], opacity: [0, 1, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeOut", delay: 2.5 }}
             >
@@ -1966,7 +1966,7 @@ Attached Image URL: ${imageUrl}
           </div>
 
           {/* Bento Grid Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-16">
             {[
               { title: t.scanLink, desc: t.scanLinkDesc, icon: Share2, bgLight: "bg-sky-100", text: "text-sky-500", borderHover: "group-hover:border-sky-400/50", gradient: "from-sky-400/10" },
               { title: t.aiCreative, desc: t.aiCreativeDesc, icon: Video, bgLight: "bg-blue-100", text: "text-blue-500", borderHover: "group-hover:border-blue-400/50", gradient: "from-blue-400/10" },
@@ -2003,7 +2003,7 @@ Attached Image URL: ${imageUrl}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Step-by-step animation */}
-            <div className="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-sky-300 before:via-blue-300 before:to-transparent">
+            <div className="space-y-8 relative before:hidden md:before:block md:before:absolute md:before:inset-0 md:before:ml-6 md:before:-translate-x-px md:before:mx-auto md:before:translate-x-0 md:before:h-full md:before:w-0.5 md:before:bg-gradient-to-b md:before:from-sky-300 md:before:via-blue-300 md:before:to-transparent">
               {[
                 { step: 1, title: t.step1 },
                 { step: 2, title: t.step2 },
@@ -2068,7 +2068,7 @@ Attached Image URL: ${imageUrl}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="glass-panel p-8 md:p-12 rounded-[2.5rem] w-full max-w-2xl relative overflow-hidden"
+            className="glass-panel p-6 md:p-12 rounded-[2.5rem] w-full max-w-2xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-sky-400/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
