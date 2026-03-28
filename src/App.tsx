@@ -1600,6 +1600,7 @@ const translations = {
     platformReach: "Platform Reach",
     contactTitle: "Request a Demo",
     contactSubtitle: "See the Living Automation Engine in action.",
+    telegramPrompt: "For a faster response, contact us directly on Telegram.",
     name: "Name",
     email: "Email",
     website: "Website / Page Link",
@@ -1650,6 +1651,7 @@ const translations = {
     platformReach: "პლატფორმის წვდომა",
     contactTitle: "დემოს მოთხოვნა",
     contactSubtitle: "ნახეთ ცოცხალი ავტომატიზაციის ძრავი მოქმედებაში.",
+    telegramPrompt: "სასწრაფო პასუხისთვის დაგვიკავშირდით პირდაპირ Telegram-ზე.",
     name: "სახელი",
     email: "ელ. ფოსტა",
     website: "ვებ-გვერდის ბმული",
@@ -2077,137 +2079,33 @@ Attached Image URL: ${imageUrl}
                 <p className="text-slate-500">{t.contactSubtitle}</p>
               </div>
 
-              {status === 'success' ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-green-50 border border-green-200 p-8 rounded-2xl text-center space-y-4"
-                >
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
-                    <CheckCircle className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800">{t.successTitle}</h3>
-                  <p className="text-slate-600">{t.successMessage}</p>
-                  <button
-                    onClick={() => setStatus('idle')}
-                    className="text-blue-600 font-medium hover:underline"
+              <div className="space-y-6 text-center">
+                <div className="flex flex-col items-center gap-4">
+                  <a
+                    href="https://t.me/tianshaniAgent#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white font-semibold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300"
                   >
-                    {t.sendAnother}
-                  </button>
-                </motion.div>
-              ) : (
-                <form ref={formRef} className="space-y-4 text-left" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-medium text-slate-500 ml-1">{t.name}</label>
-                      <input
-                        type="text"
-                        name="from_name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400/50 transition-all"
-                        placeholder={t.namePlaceholder}
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-xs font-medium text-slate-500 ml-1">{t.email}</label>
-                      <input
-                        type="email"
-                        name="from_email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400/50 transition-all"
-                        placeholder={t.emailPlaceholder}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-medium text-slate-500 ml-1">{t.website}</label>
-                      <input
-                        type="url"
-                        name="website_link"
-                        value={formData.website}
-                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                        className="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400/50 transition-all"
-                        placeholder={t.websitePlaceholder}
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-xs font-medium text-slate-500 ml-1">{t.image}</label>
-                      <input
-                        type="file"
-                        name="my_file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400/50 transition-all file:border-0 file:bg-blue-50 file:text-blue-700 file:font-medium file:px-4 file:py-1 file:rounded-full file:mr-4 hover:file:bg-blue-100"
-                      />
-                      {fileError && <p className="text-amber-500 text-xs ml-1 font-medium">{fileError}</p>}
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-medium text-slate-500 ml-1">{t.message}</label>
-                    <textarea
-                      name="message"
-                      rows={3}
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400/50 transition-all resize-none"
-                      placeholder={t.messagePlaceholder}
+                    Telegram
+                  </a>
+                  <div className="rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm w-full max-w-[280px]">
+                    <p className="text-slate-700 font-medium mb-3">Scan to chat on Telegram</p>
+                    <img
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://t.me/tianshaniAgent#"
+                      alt="Telegram QR code for Tianshani Agent"
+                      className="w-full rounded-2xl border border-slate-200"
                     />
+                    <p className="mt-3 text-sm text-slate-500">@tianshaniAgent</p>
                   </div>
-
-                  {status === 'error' && (
-                    <p className="text-red-500 text-xs ml-1">{t.errorMessage}</p>
-                  )}
-
-                  {status === 'limit_reached' && (
-                    <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-amber-800 text-sm mb-4">
-                      <strong>{t.limitReachedTitle}</strong> {t.limitReachedMessage} {t.limitReachedTelegram}
-                    </div>
-                  )}
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    disabled={status === 'sending' || !!(fileError && fileError !== t.uploadingImage)}
-                    className={`w-full py-4 rounded-xl bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white font-bold text-lg shadow-lg shadow-blue-500/30 relative overflow-hidden group ${(status === 'sending' || !!(fileError && fileError !== t.uploadingImage)) ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    <span className="relative z-10">
-                      {status === 'sending' ? t.sending : t.startAutomation}
-                    </span>
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                    <div className="absolute inset-0 rounded-xl border-2 border-white/50 animate-ping opacity-20" />
-                  </motion.button>
-                </form>
-              )}
+                </div>
+                <p className="text-slate-600">{t.telegramPrompt}</p>
+              </div>
             </div>
           </motion.div>
         </section>
 
       </main>
-
-      {/* Footer */}
-      <footer className="relative z-10 py-8 px-6 border-t border-white/20 glass-panel">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-slate-600 mb-4">{t.contactTelegram}</p>
-          <a
-            href="https://t.me/+995574282845"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white font-semibold rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-            </svg>
-            @Tianshani
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }
