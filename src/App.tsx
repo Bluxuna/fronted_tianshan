@@ -1884,12 +1884,12 @@ Attached Image URL: ${imageUrl}
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
-              <span className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-gradient">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 break-words">
+              <span className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-gradient block break-words">
                 {t.heroTitle}
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto break-words whitespace-normal">
               {t.heroSubtitle}
             </p>
           </motion.div>
@@ -1998,7 +1998,7 @@ Attached Image URL: ${imageUrl}
         <section className="py-16">
           <div className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-800 mb-4">{t.techStackTitle}</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">{t.techStackDesc}</p>
+            <p className="text-slate-600 max-w-2xl mx-auto break-words whitespace-normal">{t.techStackDesc}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -2016,12 +2016,12 @@ Attached Image URL: ${imageUrl}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ delay: idx * 0.2 }}
-                  className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+                  className="relative flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-start group is-active"
                 >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-slate-100 text-slate-500 group-hover:bg-white group-hover:border-blue-400 group-hover:text-blue-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300 z-10">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-slate-100 text-slate-500 group-hover:bg-white group-hover:border-blue-400 group-hover:text-blue-500 shadow shrink-0 transition-colors duration-300 z-10">
                     <span className="font-bold">{item.step}</span>
                   </div>
-                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-panel p-4 rounded-xl shadow-sm group-hover:shadow-md transition-shadow">
+                  <div className="w-full md:w-[calc(50%-3rem)] glass-panel p-4 rounded-xl shadow-sm group-hover:shadow-md transition-shadow">
                     <h4 className="font-semibold text-slate-800">{item.title}</h4>
                   </div>
                 </motion.div>
@@ -2076,7 +2076,7 @@ Attached Image URL: ${imageUrl}
             <div className="relative z-10 text-center space-y-8">
               <div>
                 <h2 className="font-display text-3xl font-bold text-slate-800 mb-2">{t.contactTitle}</h2>
-                <p className="text-slate-500">{t.contactSubtitle}</p>
+                <p className="text-slate-500 break-words whitespace-normal">{t.contactSubtitle}</p>
               </div>
 
               <div className="space-y-6 text-center">
